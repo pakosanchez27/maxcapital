@@ -1,0 +1,23 @@
+<?php
+
+use App\Http\Controllers\CreditTypeModelController;
+use App\Http\Controllers\DocumentosController;
+use Illuminate\Support\Facades\Route;
+
+Route::get('/', function () {
+    return view('dashboard');
+});
+
+
+
+// CRUD COMPLETO PARA DOCUMENTOS
+Route::get('documentos', [DocumentosController::class, 'index'])->name('documentos.index');
+Route::post('documentos/store', [DocumentosController::class, 'store'])->name('documentos.store');
+Route::get('documentos/{id}/edit', [DocumentosController::class, 'show'])->name('documentos.edit');
+Route::put('documentos/{id}/update', [DocumentosController::class, 'update'])->name('documentos.update');
+Route::delete('documentos/{id}/delete', [DocumentosController::class, 'destroy'])->name('documentos.destroy');
+
+
+// RUTA PARA TIPO DE CREDITO
+Route::get('catalogo-tipos-creditos', [CreditTypeModelController::class, 'index'])->name('credit-type.index');
+Route::post('/creditType/store', [CreditTypeModelController::class, 'store'])->name('credit-type.store');
