@@ -99,7 +99,6 @@ function updateDocument(documentId) {
         method: 'GET',
         success: function (response) {
             // Aquí puedes llenar el formulario de actualización con los datos recibidos
-            console.log(response);
             $('#nombreDocumentoUpdate').val(response.name);
             $('#descriptionBasicUpdate').val(response.description);
             $('#documentIdUpdate').val(response.id);

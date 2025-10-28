@@ -20,4 +20,8 @@ Route::delete('documentos/{id}/delete', [DocumentosController::class, 'destroy']
 
 // RUTA PARA TIPO DE CREDITO
 Route::get('catalogo-tipos-creditos', [CreditTypeModelController::class, 'index'])->name('credit-type.index');
-Route::post('/creditType/store', [CreditTypeModelController::class, 'store'])->name('credit-type.store');
+Route::post('/credit-type/store', [CreditTypeModelController::class, 'store'])->name('credit-type.store');
+Route::post('/credit-type/{id}/documents', [CreditTypeModelController::class, 'showDocuments']);
+Route::put('/credit-type/{id}', [CreditTypeModelController::class, 'update'])->name('creditType.update');
+Route::delete('/credit-type/{id}', [CreditTypeModelController::class, 'destroy'])->name('creditType.destroy');
+
