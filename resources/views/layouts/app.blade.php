@@ -121,7 +121,7 @@
 
             {{-- Nuevos Clientes --}}
               <li class="menu-item ">
-              <a href="index.html" class="menu-link">
+              <a href="{{ route('clientes.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="">Clientes</div>
               </a>
