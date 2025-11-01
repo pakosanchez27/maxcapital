@@ -9,8 +9,8 @@ class DocumentModel extends Model
     protected $table = 'documents';
 
     protected $fillable = [
-        'nombre',
-        'descripcion',
+        'name',
+        'description',
     ];
 
       public function creditTypes()

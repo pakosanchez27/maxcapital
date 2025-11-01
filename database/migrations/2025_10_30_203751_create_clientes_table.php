@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('clientes', function (Blueprint $table) {
             $table->id();
+            $table->string('tipo_cliente');
+            $table->string('status');
+            $table->string('registro');
             $table->timestamps();
         });
     }
