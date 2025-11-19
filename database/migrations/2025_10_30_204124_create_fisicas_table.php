@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('fisicas', function (Blueprint $table) {
             $table->id();
            
-            $table->string('nombres', 150);
-            $table->string('apellidos', 150)->nullable();
+
             $table->integer('edad')->unsigned()->nullable();
             $table->string('ocupacion', 120)->nullable();
             $table->string('genero', 20)->nullable();
@@ -26,13 +25,11 @@ return new class extends Migration
             $table->string('nacionalidad', 120)->nullable();
 
             // México
-            $table->string('curp', 18)->nullable(); // 18 caracteres
             $table->string('rfc', 13)->nullable();  // 12/13 caracteres
 
             $table->string('estado_civil', 40)->nullable();
             $table->string('regimen_conyugal', 80)->nullable();
 
-            $table->string('email', 255)->nullable(); // ->unique() si aplica
             $table->string('numero_serial_fiel', 100)->nullable();
             $table->string('tipo_identificacion', 80)->nullable();
             $table->string('folio_identificacion', 100)->nullable();

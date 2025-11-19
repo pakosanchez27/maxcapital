@@ -14,7 +14,12 @@ return new class extends Migration
         Schema::create('clientes', function (Blueprint $table) {
             $table->id();
             $table->string('tipo_cliente');
-            $table->string('status');
+            $table->string('nombre');
+            $table->string('apellido');
+            $table->string('telefono');
+            $table->string('curp')->unique();
+            $table->string('email')->unique();
+            $table->string('status')->default(0);
             $table->string('registro');
             $table->timestamps();
         });

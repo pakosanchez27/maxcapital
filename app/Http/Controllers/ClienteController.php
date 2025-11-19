@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
+use App\Models\ClienteModel;
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
@@ -11,8 +12,9 @@ class ClienteController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        return view('clientes.index');
+    { 
+        $clientes = ClienteModel::all();
+        return view('clientes.index', compact('clientes'));
     }
 
     /**
@@ -28,8 +30,6 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        // Vaidate
-        // dd($request->all());
 
         // Expresiones Regulares
         $reCurp  = '/^[A-Z][AEIOUX][A-Z]{2}\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])[HM]'
@@ -38,24 +38,34 @@ class ClienteController extends Controller
 
         $reRfc   = '/^[A-ZÑ&]{3,4}\d{6}[A-Z0-9]{3}$/i';
 
+        $validatedData = $request->validate([
+            'nombre'        => 'required|string|max:100',
+            'apellidos'   => 'required|string',
+            'curp'         => ['required', 'string', 'max:18', "regex:$reCurp"],
+            'whatsapp'     => 'required|string|max:15',
+            'email'        => 'required|email|max:150|unique:clientes,email',
+            'tipo_cliente' => 'required|string',
+        ]);
 
-        if ($request->tipo_cliente === 'fisica' && $request->tipo_credito === 'simple') {
-            $validate = $request->validate([
-                'fisica.nombres' => 'required'
-            ]);
-        } elseif ($request->tipo_cliente === 'fisica' && $request->tipo_credito === 'arrendamiento') {
-            echo 'credito arrendamiento fisico';
-        } elseif ($request->tipo_cliente === 'moral' && $request->tipo_credito === 'simple') {
-            echo 'credito simple moral';
-        } elseif ($request->tipo_cliente === 'moral' && $request->tipo_credito === 'arrendamiento') {
-            echo 'credito arrendamiento moral';
-        }
+        
+        $cliente = ClienteModel::create([
+            'nombre'        => $validatedData['nombre'],
+            'apellido'     => $validatedData['apellidos'],
+            'curp'         => $validatedData['curp'],
+            'telefono'     => $validatedData['whatsapp'],
+            'email'        => $validatedData['email'],
+            'tipo_cliente' => $validatedData['tipo_cliente'],
+            'registro'     => 'pakosanchez', // Aquí deberías obtener el usuario autenticado
+        ]);
+
+        return redirect()->route('clientes.index')->with('success', 'Cliente creado exitosamente.');
+
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Cliente $cliente)
+    public function show(ClienteModel $ClienteModel)
     {
         //
     }
@@ -63,7 +73,7 @@ class ClienteController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Cliente $cliente)
+    public function edit(ClienteModel $ClienteModel)
     {
         //
     }
@@ -71,7 +81,7 @@ class ClienteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Cliente $cliente)
+    public function update(Request $request, ClienteModel $ClienteModel)
     {
         //
     }
@@ -79,7 +89,7 @@ class ClienteController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Cliente $cliente)
+    public function destroy(ClienteModel $cliente)
     {
         //
     }

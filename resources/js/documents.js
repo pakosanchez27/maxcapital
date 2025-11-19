@@ -214,3 +214,4 @@ window.initializeDataTable = initializeDataTable;
 window.updateDocument = updateDocument;
 window.validateFormDocumentUpdate = validateFormDocumentUpdate;
 window.deleteDocument = deleteDocument;
+window.initializeDataTable = initializeDataTable;

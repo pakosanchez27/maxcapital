@@ -38,12 +38,11 @@
                                     <td>{{ $doc->id }}</td>
                                     <td>{{ $doc->name }}</td>
                                     <td>{{ $doc->description }}</td>
-                                    <td>
+                                     <td>
                                         <button class="btn btn-sm btn-warning"
-                                            onclick="updateDocument({{ $doc->id }})"><i
+                                            onclick=" updateDocument({{ $doc->id }})"><i
                                                 class="bi bi-pencil-square"></i></button>
-                                        <button class="btn btn-sm btn-danger"
-                                            onclick="deleteDocument({{ $doc->id }})"><i
+                                        <button class="btn btn-sm btn-danger" onclick="deleteDocument({{ $doc->id }})"><i
                                                 class="bi bi-trash3"></i></button>
                                     </td>
                                 </tr>
